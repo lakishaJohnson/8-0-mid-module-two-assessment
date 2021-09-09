@@ -60,8 +60,6 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
   if(movies.length === 0) {
     throw "No movies available"
   }
-  // if(movies.rating === undefined) {}
-  // return "G"
   return movies.some((movie) => {
     if(movie.rated === rating)
     return true
@@ -85,7 +83,21 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  if(movies.length === 0) {
+    throw "No movies available"
+  }
+  return movies.find((movie) => {
+    if(movie.imdbID === id) {
+      return movie.title
+    }
+    if(movie.imdbID !== id) {
+      return null;
+    }
+  })
+}
+
+
 
 /**
  * filterByGenre()
@@ -109,7 +121,17 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  if (movies.length === 0) {
+    throw "No movies available"
+  }
+  return movies.filter((movie) => {
+    if(movie.genre.toLowerCase().includes( genre.toLowerCase()))
+      return movie
+    })
+  }
+    
+
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
