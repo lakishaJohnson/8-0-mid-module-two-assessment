@@ -87,16 +87,10 @@ function findById(movies, id) {
   if(movies.length === 0) {
     throw "No movies available"
   }
-  // return movies.find((movie) => movie.imdbID === id
-  //   
-  //     return movie
-  //   }
-  //   return null
-  // })
-
   let result = movies.find((movie) => movie.imdbID === id)
   return result || null
 };
+
 
 
 
@@ -198,11 +192,22 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
     ];
  */
 function getRottenTomatoesScoreByMovie(movies) {
-  if (movies.length === 0) {
-    throw "No movies available"
+  // if (movies.length === 0) {
+  //   throw "No movies available"
+  // }
+  // return movies.map((movie) => ({[movie.title]: movie.ratings.find((movie) => movie.source === "Rotten")}))
+
+    if (!movies.length){
+      throw "No movies available"
+    }
+    return movies.map(movie => {
+      let newArr = {}
+      
+      newArr[movie.title] = movie.ratings.find(rating => rating.source === "Rotten Tomatoes").value
+      return newArr
+    })
   }
-  return movies.map((movie) => ({[movie.title]: movie.ratings.find((movie) => movie.source === "Rotten")}))
-}
+
 
 // Do not change anything below this line.
 module.exports = {
