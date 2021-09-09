@@ -87,13 +87,15 @@ function findById(movies, id) {
   if(movies.length === 0) {
     throw "No movies available"
   }
-  return movies.find((movie) => {
-    if(movie.imdbID === id) {
-      return movie.title
-    }
+  // return movies.find((movie) => movie.imdbID === id
+  //   
+  //     return movie
+  //   }
+  //   return null
+  // })
 
-    return null
-  })
+  let result = movies.find((movie) => movie.imdbID === id)
+  return result || null
 };
 
 
@@ -195,7 +197,12 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
       { "James and the Giant Peach": "91%" },
     ];
  */
-function getRottenTomatoesScoreByMovie() {}
+function getRottenTomatoesScoreByMovie(movies) {
+  if (movies.length === 0) {
+    throw "No movies available"
+  }
+  return movies.map((movie) => ({[movie.title]: movie.ratings.find((movie) => movie.source === "Rotten")}))
+}
 
 // Do not change anything below this line.
 module.exports = {
