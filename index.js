@@ -36,7 +36,7 @@ function getAllMovieTitles(movies) {
   }
   return movies.map(movie => {
     return movie.title})
-  }
+  };
 
 /**
  * checkIfAnyMovieHasRating()
@@ -64,7 +64,7 @@ function checkIfAnyMovieHasRating(movies, rating = "G") {
     if(movie.rated === rating)
     return true
   })
-}
+};
 
 
 /**
@@ -91,11 +91,10 @@ function findById(movies, id) {
     if(movie.imdbID === id) {
       return movie.title
     }
-    if(movie.imdbID !== id) {
-      return null;
-    }
+
+    return null
   })
-}
+};
 
 
 
@@ -129,7 +128,7 @@ function filterByGenre(movies, genre) {
     if(movie.genre.toLowerCase().includes( genre.toLowerCase()))
       return movie
     })
-  }
+  };
     
 
 
@@ -157,7 +156,20 @@ function filterByGenre(movies, genre) {
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  if (movies.length === 0) {
+    throw "No movies available"
+  }
+  return movies.filter((movie) => {
+     let releasedYear = movie.released.split(" ")[2] 
+     
+     if(releasedYear <= year) {
+       return movie
+     }
+    })
+  };
+  
+
 
 /**
  * getRottenTomatoesScoreByMovie()
